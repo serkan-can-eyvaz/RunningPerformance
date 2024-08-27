@@ -1,4 +1,4 @@
-package entity;
+package com.example.runningperformance.entity;
 
 import jakarta.persistence.*;
 

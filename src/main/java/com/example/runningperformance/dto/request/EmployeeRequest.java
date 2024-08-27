@@ -1,4 +1,4 @@
-package dto.request;
+package com.example.runningperformance.dto.request;
 
 import jakarta.persistence.Column;
 

@@ -1,10 +1,10 @@
-package controller;
+package com.example.runningperformance.controller;
 
-import dto.request.EmployeeRequest;
-import entity.Employee;
-import exception.EmployeeException;
+import com.example.runningperformance.dto.request.EmployeeRequest;
+import com.example.runningperformance.entity.Employee;
+import com.example.runningperformance.exception.EmployeeException;
 import org.springframework.web.bind.annotation.*;
-import service.business.EmployeeService;
+import com.example.runningperformance.service.business.EmployeeService;
 
 @RestController
 @RequestMapping("/employees")

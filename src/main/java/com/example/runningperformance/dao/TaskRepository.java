@@ -1,6 +1,6 @@
-package dao;
+package com.example.runningperformance.dao;
 
-import entity.Task;
+import com.example.runningperformance.entity.Task;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

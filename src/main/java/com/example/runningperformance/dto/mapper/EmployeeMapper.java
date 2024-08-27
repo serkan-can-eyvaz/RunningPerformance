@@ -1,7 +1,7 @@
-package dto.mapper;
+package com.example.runningperformance.dto.mapper;
 
-import dto.request.EmployeeRequest;
-import entity.Employee;
+import com.example.runningperformance.entity.Employee;
+import com.example.runningperformance.dto.request.EmployeeRequest;
 import org.springframework.stereotype.Component;
 
 @Component
