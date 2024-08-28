@@ -30,7 +30,7 @@ public class Employee {
     @OneToMany(mappedBy = "employee")
     private List<Task> Employeetasks = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "employess")
+    @ManyToMany(mappedBy = "employees")
     private List<Project>projects = new ArrayList<>();
 
     public Employee() {

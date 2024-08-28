@@ -21,12 +21,12 @@ public class EmployeeService  implements com.example.runningperformance.service.
 
     @Override
     public Employee createEmployee(EmployeeRequest employeeRequest) throws EmployeeException {
-        Optional<Employee> employeeOptional =employeeRepository.findById(employeeRequest.getEmployeeId());
+        /*Optional<Employee> employeeOptional =employeeRepository.findById(employeeRequest.getEmployeeId());
         if(employeeOptional.isPresent()){
             throw new EmployeeException("Writer id not found: " + employeeRequest.getEmployeeId());
         }
-        Employee employee =employeeOptional.get();
-        employee = employeeMapper.toEmployee(employeeRequest);
+        Employee employee =employeeOptional.get();*/
+        Employee employee = employeeMapper.toEmployee(employeeRequest);
         employeeRepository.save(employee);
         return employee;
     }

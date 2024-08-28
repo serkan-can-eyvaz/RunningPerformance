@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class EmployeeRequest  {
 
-    private long employeeId;
+    //private long employeeId;
     private String name;
     private String surname;
     private  String position;
@@ -16,15 +16,6 @@ public class EmployeeRequest  {
 
     public EmployeeRequest() {}
 
-    public EmployeeRequest(long employeeId, String name, String surname, String position, String deparment, Date startingDate, long salary) {
-        this.employeeId = employeeId;
-        this.name = name;
-        this.surname = surname;
-        this.position = position;
-        this.deparment = deparment;
-        this.startingDate = startingDate;
-        this.salary = salary;
-    }
 
     public EmployeeRequest(String name, String surname, String position, String deparment, Date startingDate, long salary) {
         this.name = name;
@@ -35,13 +26,13 @@ public class EmployeeRequest  {
         this.salary = salary;
     }
 
-    public long getEmployeeId() {
+    /*public long getEmployeeId() {
         return employeeId;
-    }
+    }*/
 
-    public void setEmployeeId(long employeeId) {
+   /* public void setEmployeeId(long employeeId) {
         this.employeeId = employeeId;
-    }
+    }*/
 
     public String getName() {
         return name;
