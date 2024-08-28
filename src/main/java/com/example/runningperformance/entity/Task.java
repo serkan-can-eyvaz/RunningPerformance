@@ -19,8 +19,8 @@ public class Task {
     private Date startDate;
     @Column(name = "endDate")
     private Date endDate;
-    @Column(name = "revantProjecet")
-    private String revantProject;
+    @Column(name = "relevantProjecet")
+    private String relevantProject;
     @Column(name = "assignedEmployee")
     private String assignedEmployee;
 
@@ -36,24 +36,24 @@ public class Task {
     {
 
     }
-    public Task(long id, String name, String description, Date startDate, Date endDate, String revantProject, String assignedEmployee, Employee employee, Project project) {
+    public Task(long id, String name, String description, Date startDate, Date endDate, String relevantProject, String assignedEmployee, Employee employee, Project project) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.revantProject = revantProject;
+        this.relevantProject = relevantProject;
         this.assignedEmployee = assignedEmployee;
         this.employee = employee;
         this.project = project;
     }
 
-    public Task(String name, String description, Date startDate, Date endDate, String revantProject, String assignedEmployee, Employee employee, Project project) {
+    public Task(String name, String description, Date startDate, Date endDate, String relevantProject, String assignedEmployee, Employee employee, Project project) {
         this.name = name;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.revantProject = revantProject;
+        this.relevantProject = relevantProject;
         this.assignedEmployee = assignedEmployee;
         this.employee = employee;
         this.project = project;
@@ -64,12 +64,12 @@ public class Task {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return id == task.id && Objects.equals(name, task.name) && Objects.equals(description, task.description) && Objects.equals(startDate, task.startDate) && Objects.equals(endDate, task.endDate) && Objects.equals(revantProject, task.revantProject) && Objects.equals(assignedEmployee, task.assignedEmployee) && Objects.equals(employee, task.employee) && Objects.equals(project, task.project);
+        return id == task.id && Objects.equals(name, task.name) && Objects.equals(description, task.description) && Objects.equals(startDate, task.startDate) && Objects.equals(endDate, task.endDate) && Objects.equals(relevantProject, task.relevantProject) && Objects.equals(assignedEmployee, task.assignedEmployee) && Objects.equals(employee, task.employee) && Objects.equals(project, task.project);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, startDate, endDate, revantProject, assignedEmployee, employee, project);
+        return Objects.hash(id, name, description, startDate, endDate, relevantProject, assignedEmployee, employee, project);
     }
 
     public long getId() {
@@ -112,12 +112,12 @@ public class Task {
         this.endDate = endDate;
     }
 
-    public String getRevantProject() {
-        return revantProject;
+    public String getRelevantProject() {
+        return relevantProject;
     }
 
-    public void setRevantProject(String revantProject) {
-        this.revantProject = revantProject;
+    public void setRelevantProject(String revantProject) {
+        this.relevantProject = revantProject;
     }
 
     public String getAssignedEmployee() {

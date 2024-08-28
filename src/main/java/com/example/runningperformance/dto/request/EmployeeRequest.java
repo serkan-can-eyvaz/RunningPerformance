@@ -1,8 +1,10 @@
 package com.example.runningperformance.dto.request;
 
+import com.example.runningperformance.entity.Task;
 import jakarta.persistence.Column;
 
 import java.util.Date;
+import java.util.List;
 
 public class EmployeeRequest  {
 
@@ -13,6 +15,7 @@ public class EmployeeRequest  {
     private String deparment;
     private Date startingDate;
     private long salary;
+    private List<TaskRequest> task;
 
     public EmployeeRequest() {}
 
@@ -33,6 +36,14 @@ public class EmployeeRequest  {
    /* public void setEmployeeId(long employeeId) {
         this.employeeId = employeeId;
     }*/
+
+    public List<TaskRequest> getTask() {
+        return task;
+    }
+
+    public void setTask(List<TaskRequest> task) {
+        this.task = task;
+    }
 
     public String getName() {
         return name;
