@@ -28,12 +28,17 @@ public class Employee {
     private long salary;
 
     @OneToMany(mappedBy = "employee")
-    private List<Task> Employeetasks = new ArrayList<>();
+    private List<Task> employeetasks = new ArrayList<>();
 
     @ManyToMany(mappedBy = "employees")
     private List<Project>projects = new ArrayList<>();
 
     public Employee() {
+    }
+    public void addTask(Task task) {
+        employeetasks.add(task);
+        task.setEmployee(this);
+
     }
 
     public Employee(long empId, String name, String surname, String position, String deparment, Date startingDate, long salary) {
@@ -125,11 +130,11 @@ public class Employee {
     }
 
     public List<Task> getEmployeetasks() {
-        return Employeetasks;
+        return employeetasks;
     }
 
     public void setEmployeetasks(List<Task> employeetasks) {
-        Employeetasks = employeetasks;
+        employeetasks = employeetasks;
     }
 
     public List<Project> getProjects() {

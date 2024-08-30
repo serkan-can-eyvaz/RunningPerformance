@@ -10,8 +10,8 @@ public class TaskRequest {
     private Date startDate;
     private Date endDate;
     private String relevantProject;
-    private  String assignedEmployee;
-    private Long assignedEmployeeId; // Employee ID
+
+    private Long assignedEmployeeId; // Employee ID gereksiz
     private Long projectId; // Project ID
 
     public TaskRequest() {
@@ -82,11 +82,5 @@ public class TaskRequest {
         this.projectId = projectId;
     }
 
-    public String getAssignedEmployee() {
-        return assignedEmployee;
-    }
 
-    public void setAssignedEmployee(String assignedEmployee) {
-        this.assignedEmployee = assignedEmployee;
-    }
 }

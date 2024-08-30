@@ -16,7 +16,6 @@ import java.util.Optional;
 @Component
 public class EmployeeMapper {
 
-
     private final EmployeeRepository employeeRepository;
     private final ProjectRepository projectRepository;
 
@@ -38,25 +37,16 @@ public class EmployeeMapper {
             task.setStartDate(taskRequest.getStartDate());
             task.setEndDate(taskRequest.getEndDate());
             task.setRelevantProject(taskRequest.getRelevantProject());
-            task.setAssignedEmployee(taskRequest.getAssignedEmployee());
-
-
+            //sadece statik öğeler
             Optional<Employee> employeeOptional = employeeRepository.findById(taskRequest.getAssignedEmployeeId());
-            if (employeeOptional.isPresent()) {
-                task.setEmployee(employeeOptional.get());
-            }
-
+            employeeOptional.ifPresent(task::setEmployee);
 
             Optional<Project> projectOptional = projectRepository.findById(taskRequest.getProjectId());
-            if (projectOptional.isPresent()) {
-                task.setProject(projectOptional.get());
-            }
-
+            projectOptional.ifPresent(task::setProject);
             tasks.add(task);
         }
         return tasks;
     }
-
 
     public Employee toEmployee(EmployeeRequest employeeRequest) {
         if (employeeRequest == null) {
@@ -64,7 +54,6 @@ public class EmployeeMapper {
         }
 
         Employee employee = new Employee();
-        //employee.setEmpId(employeeRequest.getEmployeeId());
         employee.setName(employeeRequest.getName());
         employee.setSurname(employeeRequest.getSurname());
         employee.setDeparment(employeeRequest.getDeparment());
@@ -72,7 +61,6 @@ public class EmployeeMapper {
         employee.setStartingDate(employeeRequest.getStartingDate());
         employee.setSalary(employeeRequest.getSalary());
 
-        // TaskRequest'ten Task nesnelerine dönüştürme
         List<Task> tasks = mapTasks(employeeRequest.getTask());
         employee.setEmployeetasks(tasks);
 

@@ -19,10 +19,7 @@ public class Task {
     private Date startDate;
     @Column(name = "endDate")
     private Date endDate;
-    @Column(name = "relevantProjecet")
-    private String relevantProject;
-    @Column(name = "assignedEmployee")
-    private String assignedEmployee;
+
 
     @ManyToOne
     @JoinColumn(name = "employeedId")
@@ -42,8 +39,6 @@ public class Task {
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.relevantProject = relevantProject;
-        this.assignedEmployee = assignedEmployee;
         this.employee = employee;
         this.project = project;
     }
@@ -53,8 +48,6 @@ public class Task {
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.relevantProject = relevantProject;
-        this.assignedEmployee = assignedEmployee;
         this.employee = employee;
         this.project = project;
     }
@@ -64,12 +57,12 @@ public class Task {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return id == task.id && Objects.equals(name, task.name) && Objects.equals(description, task.description) && Objects.equals(startDate, task.startDate) && Objects.equals(endDate, task.endDate) && Objects.equals(relevantProject, task.relevantProject) && Objects.equals(assignedEmployee, task.assignedEmployee) && Objects.equals(employee, task.employee) && Objects.equals(project, task.project);
+        return id == task.id && Objects.equals(name, task.name) && Objects.equals(description, task.description) && Objects.equals(startDate, task.startDate) && Objects.equals(endDate, task.endDate) && Objects.equals(employee, task.employee) && Objects.equals(project, task.project);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, startDate, endDate, relevantProject, assignedEmployee, employee, project);
+        return Objects.hash(id, name, description, startDate, endDate, employee, project);
     }
 
     public long getId() {
@@ -111,23 +104,6 @@ public class Task {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
-
-    public String getRelevantProject() {
-        return relevantProject;
-    }
-
-    public void setRelevantProject(String revantProject) {
-        this.relevantProject = revantProject;
-    }
-
-    public String getAssignedEmployee() {
-        return assignedEmployee;
-    }
-
-    public void setAssignedEmployee(String assignedEmployee) {
-        this.assignedEmployee = assignedEmployee;
-    }
-
     public Employee getEmployee() {
         return employee;
     }
