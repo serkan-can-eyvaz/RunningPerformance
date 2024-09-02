@@ -28,13 +28,11 @@ public class EmployeeService {
     }
 
     public Employee createEmployee(EmployeeRequest employeeRequest) throws TaskNotFoundException {
-        // Mapper sınıfından çalışan entity'sini oluştur
+
         Employee employee = EmployeeMapper.toEntity(employeeRequest);
 
-        // EmployeeRequest içindeki task ID'lerini al
         List<Long> taskIds = employeeRequest.getTaskIds();
 
-        // Task ID'lerine göre görevleri bul ve çalışan ile ilişkilendir
         List<Task> tasks = new ArrayList<>();
         for (Long taskId : taskIds) {
             Optional<Task> optionalTask = taskRepository.findById(taskId);
