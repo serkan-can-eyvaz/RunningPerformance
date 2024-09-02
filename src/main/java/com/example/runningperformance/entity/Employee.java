@@ -41,6 +41,16 @@ public class Employee {
 
     }
 
+    public void addTasks(List<Task> tasks) {
+
+        for (Task task : tasks) {
+            Task task1 = new Task();
+            task1.setEmployee(this);
+            this.addTask(task1);
+        }
+
+    }
+
     public Employee(long empId, String name, String surname, String position, String deparment, Date startingDate, long salary) {
         this.empId = empId;
         this.name = name;

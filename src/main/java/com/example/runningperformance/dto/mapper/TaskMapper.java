@@ -20,7 +20,6 @@ public class TaskMapper {
         task.setDescription(taskRequest.getDescription());
         task.setStartDate(taskRequest.getStartDate());
         task.setEndDate(taskRequest.getEndDate());
-        task.setRelevantProject(taskRequest.getRelevantProject());
         return task;
     }
 

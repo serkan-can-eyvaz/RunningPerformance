@@ -6,8 +6,8 @@ import com.example.runningperformance.dto.mapper.TaskMapper;
 import com.example.runningperformance.dto.request.TaskRequest;
 import com.example.runningperformance.entity.Employee;
 import com.example.runningperformance.entity.Task;
-import com.example.runningperformance.exception.EmployeeException;
-import com.example.runningperformance.exception.TaskException;
+import com.example.runningperformance.exception.EmployeeNotFoundException;
+import com.example.runningperformance.exception.TaskNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -26,16 +26,16 @@ public class TaskService implements com.example.runningperformance.service.Abstr
     }
 
     @Override
-    public Task createTask(TaskRequest taskRequest) throws TaskException, EmployeeException {
+    public Task createTask(TaskRequest taskRequest) throws TaskNotFoundException, EmployeeNotFoundException {
 
         Long employeeId = taskRequest.getAssignedEmployeeId();
         if (employeeId == null) {
-            throw new EmployeeException("Employee not assigned.");
+            throw new EmployeeNotFoundException("Employee not assigned.");
         }
 
         Optional<Employee> optionalEmployee = employeeRepository.findById(employeeId);
         if (optionalEmployee.isEmpty()) {
-            throw new EmployeeException("Employee does not exist.");
+            throw new EmployeeNotFoundException("Employee does not exist.");
         }
 
         Task task = taskMapper.toTask(taskRequest);

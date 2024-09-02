@@ -1,24 +1,18 @@
 package com.example.runningperformance.dto.request;
 
-import com.example.runningperformance.entity.Task;
-import jakarta.persistence.Column;
-
 import java.util.Date;
 import java.util.List;
 
 public class EmployeeRequest  {
-
-    //private long employeeId;
     private String name;
     private String surname;
-    private  String position;
+    private String position;
     private String deparment;
     private Date startingDate;
     private long salary;
-    private List<TaskRequest> task;
+    private List<Long> taskIds; // TaskRequest yerine Long tipinde task ID'leri
 
     public EmployeeRequest() {}
-
 
     public EmployeeRequest(String name, String surname, String position, String deparment, Date startingDate, long salary) {
         this.name = name;
@@ -29,20 +23,12 @@ public class EmployeeRequest  {
         this.salary = salary;
     }
 
-    /*public long getEmployeeId() {
-        return employeeId;
-    }*/
-
-   /* public void setEmployeeId(long employeeId) {
-        this.employeeId = employeeId;
-    }*/
-
-    public List<TaskRequest> getTask() {
-        return task;
+    public List<Long> getTaskIds() {
+        return taskIds;
     }
 
-    public void setTask(List<TaskRequest> task) {
-        this.task = task;
+    public void setTaskIds(List<Long> taskIds) {
+        this.taskIds = taskIds;
     }
 
     public String getName() {

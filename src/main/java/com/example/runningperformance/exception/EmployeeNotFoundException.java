@@ -4,20 +4,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.NOT_FOUND,reason = "there is no such employee")
-public class EmployeeException extends Exception{
+public class EmployeeNotFoundException extends Exception{
 
-        public EmployeeException(){
+        public EmployeeNotFoundException(){
             super();
         }
-        public EmployeeException(String message){
+        public EmployeeNotFoundException(String message){
             super(message);
         }
-        public EmployeeException(String message, Throwable cause){
+        public EmployeeNotFoundException(String message, Throwable cause){
             super(message, cause);
         }
-        public EmployeeException(Throwable cause){
+        public EmployeeNotFoundException(Throwable cause){
             super(cause);
         }
-        public EmployeeException(int id) {
+        public EmployeeNotFoundException(int id) {
         }
 }
