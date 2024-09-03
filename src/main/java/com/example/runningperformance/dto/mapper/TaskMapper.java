@@ -1,6 +1,7 @@
 package com.example.runningperformance.dto.mapper;
 
 import com.example.runningperformance.dto.request.TaskRequest;
+import com.example.runningperformance.dto.response.TaskResponse;
 import com.example.runningperformance.entity.Employee;
 import com.example.runningperformance.entity.Task;
 import com.example.runningperformance.exception.TaskNotFoundException;
@@ -22,6 +23,18 @@ public class TaskMapper {
         task.setStartDate(taskRequest.getStartDate());
         task.setEndDate(taskRequest.getEndDate());
         return task;
+    }
+
+    public TaskResponse toTaskResponse(Task task) throws TaskNotFoundException {
+        if (task == null) {
+            throw new TaskNotFoundException("task not found ");
+        }
+        TaskResponse taskResponse = new TaskResponse();
+        taskResponse.setDescription(task.getDescription());
+        taskResponse.setStartDate(task.getStartDate());
+        taskResponse.setEndDate(task.getEndDate());
+        taskResponse.setName(task.getName());
+        return taskResponse;
     }
 
 }

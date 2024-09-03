@@ -44,9 +44,8 @@ public class Employee {
     public void addTasks(List<Task> tasks) {
 
         for (Task task : tasks) {
-            Task task1 = new Task();
-            task1.setEmployee(this);
-            this.addTask(task1);
+            task.setEmployee(this);
+            this.addTask(task);
         }
 
     }
@@ -142,11 +141,9 @@ public class Employee {
     public List<Task> getEmployeetasks() {
         return employeetasks;
     }
-
     public void setEmployeetasks(List<Task> employeetasks) {
-        employeetasks = employeetasks;
+        this.employeetasks = employeetasks;
     }
-
     public List<Project> getProjects() {
         return projects;
     }

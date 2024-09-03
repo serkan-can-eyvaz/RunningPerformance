@@ -3,6 +3,7 @@ package com.example.runningperformance.controller;
 import com.example.runningperformance.dto.request.TaskRequest;
 import com.example.runningperformance.entity.Task;
 import com.example.runningperformance.exception.EmployeeNotFoundException;
+import com.example.runningperformance.exception.ProjectNotFoundException;
 import com.example.runningperformance.exception.TaskNotFoundException;
 import com.example.runningperformance.service.business.TaskService;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class TaskController {
     }
 
     @PostMapping("/create/{employeeId}")
-    public Task createTask(@RequestBody TaskRequest taskRequest) throws EmployeeNotFoundException, TaskNotFoundException {
+    public Task createTask(@RequestBody TaskRequest taskRequest) throws EmployeeNotFoundException, TaskNotFoundException, ProjectNotFoundException {
         return taskService.createTask(taskRequest);
     }
 }

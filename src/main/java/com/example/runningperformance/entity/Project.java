@@ -34,6 +34,19 @@ public class Project {
 
     public Project(){}
 
+    public void addTask(Task task){
+        projectTasks.add(task);
+        task.setProject(this);
+    }
+    public void addTasks(List<Task> tasks) {
+        for (Task task : tasks) {
+            Task task1 = new Task();
+            task1.setProject(this);
+            this.addTask(task1);
+        }
+
+    }
+
     public Project(long id, String name, Date startDate, Date endDate, long bugdet, String projectManager, List<Task> projectTasks, List<Employee> employees) {
         this.id = id;
         this.name = name;

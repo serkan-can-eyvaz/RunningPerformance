@@ -1,25 +1,23 @@
-package com.example.runningperformance.dto.request;
+package com.example.runningperformance.dto.response;
+
+import jakarta.persistence.Column;
 
 import java.util.Date;
 
-public class TaskRequest {
-
+public class TaskResponse {
     private String name;
     private String description;
     private Date startDate;
     private Date endDate;
-    private long employeeId;
-    private long projectId;
 
-    public TaskRequest() {
-    }
+    public TaskResponse()
+    {}
 
-    public TaskRequest(String name, String description, Date startDate, Date endDate) {
+    public TaskResponse(String name, String description, Date startDate, Date endDate) {
         this.name = name;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
-
     }
 
     public String getName() {
@@ -52,21 +50,5 @@ public class TaskRequest {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
-    }
-
-    public long getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(long employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public long getProjectId() {
-        return projectId;
-    }
-
-    public void setProjectId(long projectId) {
-        this.projectId = projectId;
     }
 }
