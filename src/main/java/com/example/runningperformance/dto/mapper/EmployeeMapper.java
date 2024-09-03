@@ -38,7 +38,15 @@ public class EmployeeMapper {
         employeeResponse.setPosition(employee.getPosition());
         employeeResponse.setName(employee.getName());
         employeeResponse.setSurname(employee.getSurname());
-        employeeResponse.setPosition(employeeResponse.getPosition());
         return employeeResponse;
     }
+    public static void updateEntity(Employee employee, EmployeeRequest employeeRequest) {
+        employee.setName(employeeRequest.getName());
+        employee.setSurname(employeeRequest.getSurname());
+        employee.setPosition(employeeRequest.getPosition());
+        employee.setDeparment(employeeRequest.getDeparment());
+        employee.setStartingDate(employeeRequest.getStartingDate());
+        employee.setSalary(employeeRequest.getSalary());
+    }
+
 }

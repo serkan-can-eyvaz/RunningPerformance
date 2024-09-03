@@ -56,20 +56,7 @@ public class EmployeeService implements com.example.runningperformance.service.A
         }
         return employeeRepository.save(employee);
     }
-    /*
-    @Override
-    public EmployeeResponse findEmployeeById(long id) throws EmployeeNotFoundException {
-        Optional<Employee> optionalEmployee = employeeRepository.findById(id);
-        if (optionalEmployee.isEmpty()) {
-           throw new EmployeeNotFoundException("Employee not found with id: " + id);
-        }
-        Employee employee = optionalEmployee.get();
-        EmployeeResponse employeeResponse = new EmployeeResponse();
-        employeeResponse =EmployeeMapper.toEmployeeResponse(employee);
-        TaskResponse taskResponse = new TaskResponse();
-        taskResponse = taskMapper.toTaskResponse(taskResponse);
 
-    }*/
     @Override
     public EmployeeResponse findEmployeeById(long id) throws EmployeeNotFoundException, TaskNotFoundException {
         Optional<Employee> optionalEmployee = employeeRepository.findById(id);
@@ -92,6 +79,64 @@ public class EmployeeService implements com.example.runningperformance.service.A
         employeeResponse.setTaskResponseList(taskResponses);
         return employeeResponse;
     }
+    /*
+    @Override
+    public EmployeeResponse findAllEmployees() throws EmployeeNotFoundException, TaskNotFoundException {
+        List<Employee> employees = employeeRepository.findAll();
+        return employees.stream().map(EmployeeMapper::toEmployeeResponse).collect(Collectors.toList());
+    }*/
+    @Override
+    public List<EmployeeResponse> findAllEmployees()throws EmployeeNotFoundException  {
+        List<Employee> employees = employeeRepository.findAll();
+        return employees.stream()
+                .map(employee -> {
+                    try {
+                        return EmployeeMapper.toEmployeeResponse(employee);
+                    } catch (EmployeeNotFoundException e) {
+                        throw new RuntimeException("list is empty") ; // veya uygun bir işleme yapılabilir
+                    }
+                })
+                .collect(Collectors.toList());
+    }
 
+    @Override
+    public void deleteEmployee(long id) throws EmployeeNotFoundException {
+        Employee employee = employeeRepository.findById(id).get();
+        if (employee.getEmployeetasks().isEmpty()) {
+            throw new EmployeeNotFoundException("Employee not found with id: " + id);
+        }
+        employeeRepository.delete(employee);
+    }
+
+    @Override
+    public EmployeeResponse updateEmployee(long id, EmployeeRequest employeeRequest) throws EmployeeNotFoundException, TaskNotFoundException {
+        Optional<Employee> optionalEmployee = employeeRepository.findById(id);
+        if (optionalEmployee.isEmpty()) {
+            throw new EmployeeNotFoundException("Employee not found with id: " + id);
+        }
+
+        Employee employee = optionalEmployee.get();
+        EmployeeMapper.updateEntity(employee, employeeRequest);
+
+        List<Long> taskIds = employeeRequest.getTaskIds();
+        List<Task> newTasks = new ArrayList<>();
+        for (Long taskId : taskIds) {
+            Optional<Task> optionalTask = taskRepository.findById(taskId);
+            if (optionalTask.isPresent()) {
+                Task task = optionalTask.get();
+                newTasks.add(task);
+            } else {
+                throw new TaskNotFoundException("Task not found with id: " + taskId);
+            }
+        }
+
+        employee.getEmployeetasks().clear();
+        for (Task task : newTasks) {
+            employee.addTask(task);
+        }
+
+        employeeRepository.save(employee);
+        return EmployeeMapper.toEmployeeResponse(employee);
+    }
 
 }
