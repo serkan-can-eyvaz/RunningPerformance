@@ -2,11 +2,10 @@ package com.example.runningperformance.controller;
 
 import com.example.runningperformance.dto.request.TaskRequest;
 import com.example.runningperformance.entity.Task;
+import com.example.runningperformance.exception.EmployeeNotFoundException;
+import com.example.runningperformance.exception.TaskNotFoundException;
 import com.example.runningperformance.service.business.TaskService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/tasks")
@@ -18,9 +17,8 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @PostMapping
-    public Task createTask(@RequestBody TaskRequest taskRequest) throws Exception {
-
-        return  taskService.createTask(taskRequest);
+    @PostMapping("/create/{employeeId}")
+    public Task createTask(@RequestBody TaskRequest taskRequest) throws EmployeeNotFoundException, TaskNotFoundException {
+        return taskService.createTask(taskRequest);
     }
 }

@@ -1,7 +1,5 @@
 package com.example.runningperformance.dto.request;
 
-import jakarta.persistence.Column;
-
 import java.util.Date;
 
 public class TaskRequest {
@@ -9,20 +7,15 @@ public class TaskRequest {
     private String description;
     private Date startDate;
     private Date endDate;
-    private String relevantProject;
-
-    private Long assignedEmployeeId; // Employee ID gereksiz
-    private Long projectId; // Project ID
-
+    private long employeeId;
     public TaskRequest() {
     }
 
-    public TaskRequest(String name, String description, Date startDate, Date endDate, String revantProject) {
+    public TaskRequest(String name, String description, Date startDate, Date endDate) {
         this.name = name;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.relevantProject = relevantProject;
 
     }
 
@@ -58,29 +51,11 @@ public class TaskRequest {
         this.endDate = endDate;
     }
 
-    public String getRelevantProject() {
-        return relevantProject;
+    public long getEmployeeId() {
+        return employeeId;
     }
 
-    public void setRelevantProject(String revantProject) {
-        this.relevantProject = relevantProject;
+    public void setEmployeeId(long employeeId) {
+        this.employeeId = employeeId;
     }
-
-    public Long getAssignedEmployeeId() {
-        return assignedEmployeeId;
-    }
-
-    public void setAssignedEmployeeId(Long assignedEmployeeId) {
-        this.assignedEmployeeId = assignedEmployeeId;
-    }
-
-    public Long getProjectId() {
-        return projectId;
-    }
-
-    public void setProjectId(Long projectId) {
-        this.projectId = projectId;
-    }
-
-
 }

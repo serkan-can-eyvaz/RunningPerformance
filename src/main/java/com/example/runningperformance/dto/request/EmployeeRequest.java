@@ -10,7 +10,7 @@ public class EmployeeRequest  {
     private String deparment;
     private Date startingDate;
     private long salary;
-    private List<Long> taskIds; // TaskRequest yerine Long tipinde task ID'leri
+    private List<Long> taskIds;
 
     public EmployeeRequest() {}
 

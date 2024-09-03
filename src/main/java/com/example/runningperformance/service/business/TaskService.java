@@ -25,24 +25,19 @@ public class TaskService implements com.example.runningperformance.service.Abstr
         this.taskMapper = taskMapper;
     }
 
-    @Override
-    public Task createTask(TaskRequest taskRequest) throws TaskNotFoundException, EmployeeNotFoundException {
+    public Task createTask(TaskRequest taskRequest) throws TaskNotFoundException,EmployeeNotFoundException {
 
-        Long employeeId = taskRequest.getAssignedEmployeeId();
-        if (employeeId == null) {
-            throw new EmployeeNotFoundException("Employee not assigned.");
+        Optional<Employee> employee = employeeRepository.findById(taskRequest.getEmployeeId());
+        if (!employee.isPresent()) {
+            throw  new EmployeeNotFoundException("Employee id not found"+taskRequest.getEmployeeId());
         }
-
-        Optional<Employee> optionalEmployee = employeeRepository.findById(employeeId);
-        if (optionalEmployee.isEmpty()) {
-            throw new EmployeeNotFoundException("Employee does not exist.");
-        }
-
+        Employee emp = employee.get();
         Task task = taskMapper.toTask(taskRequest);
-
-        Employee employee = optionalEmployee.get();
-        task.setEmployee(employee);
+        task.setEmployee(emp);
 
         return taskRepository.save(task);
     }
+
+
+
 }
