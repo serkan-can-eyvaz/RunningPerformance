@@ -65,7 +65,9 @@ public class TaskMapper {
 
         return response;
     }
-    //dönüşümlerin sağlıklı olup olmadığını sor
+    //dönüşümlerin sağlıklı olup olmadığını hakkında(burada kullanılan dönüşümler tamamen kişisel ya da ekip tercihidir.
+    // İsterseniz tüm işlemleri bir mapper sınıfında ya her sınıfın mapper sınıfını oluşturarak hatta controller sınıflarında bile
+    //bu işlemlerin yapıldığı farklı tercihler var tamamen siz ya da çalıştığınız ekibin tercihlerine bırakılmış bir yöntem kesin doğru ve yanlış diye bi kavram yok)
     // EmployeeResponse dönüşümü
     private EmployeeResponse toEmployeeResponse(Employee employee) {
         return new EmployeeResponse(employee.getEmpId(),employee.getName(),employee.getSurname(), employee.getPosition(),employee.getDeparment(),employee.getStartingDate(),employee.getSalary());
@@ -74,6 +76,23 @@ public class TaskMapper {
     // ProjectResponse dönüşümü
     private ProjectResponse toProjectResponse(Project project) {
         return new ProjectResponse(project.getId(), project.getName(),project.getStartDate(), project.getEndDate(), project.getBugdet(), project.getProjectManager());
+    }
+
+    public static void  updateTask(Task task, TaskRequest taskRequest) throws TaskNotFoundException {
+
+        if (task == null) {
+            throw  new TaskNotFoundException("task not found");
+        }
+        if (taskRequest == null) {
+            throw  new TaskNotFoundException("task not found");
+        }
+        Task taskToUpdate = new Task();
+        taskToUpdate.setName(taskRequest.getName());
+        taskToUpdate.setDescription(taskRequest.getDescription());
+        taskToUpdate.setStartDate(taskRequest.getStartDate());
+        taskToUpdate.setEndDate(taskRequest.getEndDate());
+        taskToUpdate.setEmployee(task.getEmployee());
+        taskToUpdate.setProject(task.getProject());
     }
 
 }

@@ -3,6 +3,7 @@ package com.example.runningperformance.dto.response;
 import jakarta.persistence.Column;
 
 import java.util.Date;
+import java.util.List;
 
 public class ProjectResponse
 {
@@ -12,6 +13,7 @@ public class ProjectResponse
     private Date endDate;
     private long bugdet;
     private String projectManager;
+    private List<TaskResponse> tasks;
 
     public ProjectResponse() {
     }
@@ -71,5 +73,13 @@ public class ProjectResponse
 
     public void setProjectManager(String projectManager) {
         this.projectManager = projectManager;
+    }
+
+    public List<TaskResponse> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<TaskResponse> tasks) {
+        this.tasks = tasks;
     }
 }

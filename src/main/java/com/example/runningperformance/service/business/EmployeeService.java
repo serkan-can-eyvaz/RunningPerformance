@@ -93,7 +93,7 @@ public class EmployeeService implements com.example.runningperformance.service.A
                     try {
                         return EmployeeMapper.toEmployeeResponse(employee);
                     } catch (EmployeeNotFoundException e) {
-                        throw new RuntimeException("list is empty") ; // veya uygun bir işleme yapılabilir
+                        throw new RuntimeException("list is empty") ;
                     }
                 })
                 .collect(Collectors.toList());
