@@ -44,7 +44,7 @@ public class EmployeeController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteWriter(@PathVariable long id) throws EmployeeNotFoundException {
-        //responseentity kullanarak sarmalakmı daha sağlıklı yoksa her ikisi de iş görür mü sor
+        //responseentity kullanarak sarmalak mı daha sağlıklı yoksa her ikisi de iş görür mü
         Optional<Employee> employee = employeeRepository.findById( id);
         if (employee.isEmpty()) {
             throw new EmployeeNotFoundException("Writer not found with id: " + id);
