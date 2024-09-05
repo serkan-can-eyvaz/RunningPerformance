@@ -2,8 +2,11 @@ package com.example.runningperformance.dto.mapper;
 
 import com.example.runningperformance.dto.request.TaskRequest;
 import com.example.runningperformance.dto.response.EmployeeResponse;
+import com.example.runningperformance.dto.response.ProjectResponse;
 import com.example.runningperformance.dto.response.TaskResponse;
+import com.example.runningperformance.dto.response.TaskWithEmployeeAndProjectRespons;
 import com.example.runningperformance.entity.Employee;
+import com.example.runningperformance.entity.Project;
 import com.example.runningperformance.entity.Task;
 import com.example.runningperformance.exception.TaskNotFoundException;
 import org.springframework.stereotype.Component;
@@ -34,29 +37,43 @@ public class TaskMapper {
         taskResponse.setName(task.getName());
         return taskResponse;
     }
-    public TaskResponse toTaskResponseEmployeeAndProject(Task task) {
-        TaskResponse taskResponse = new TaskResponse();
 
-        // Task bilgilerini ekliyoruz
-        taskResponse.setId(task.getId());
-        taskResponse.setDescription(task.getDescription());
-        taskResponse.setDueDate(task.getDueDate());
-
-        // İlişkili employee ve project bilgilerini ekliyoruz
-        taskResponse.setEmployeeResponse(toEmployeeResponse(task.getEmployee()));
-        taskResponse.setProjectResponse(toProjectResponse(task.getProject()));
-
-        return taskResponse;
+    public TaskWithEmployeeAndProjectRespons toTaskWithEmployeeAndProjectRespons(Task task) throws TaskNotFoundException {
+        if (task == null) {
+            throw new TaskNotFoundException("task not found ");
+        }
+        TaskWithEmployeeAndProjectRespons response = new TaskWithEmployeeAndProjectRespons();
+        response.setDescription(task.getDescription());
+        response.setStartDate(task.getStartDate());
+        response.setEndDate(task.getEndDate());
+        response.setName(task.getName());
+        return response;
     }
 
+    public TaskWithEmployeeAndProjectRespons toTaskResponseEmployeeAndProject(Task task) {
+
+        TaskWithEmployeeAndProjectRespons response = new TaskWithEmployeeAndProjectRespons();
+        response.setId(task.getId());
+        response.setDescription(task.getDescription());
+        response.setStartDate(task.getStartDate());
+        response.setEndDate(task.getEndDate());
+        response.setName(task.getName());
+
+
+        response.setEmployeeResponse(toEmployeeResponse(task.getEmployee()));
+        response.setProjectResponse(toProjectResponse(task.getProject()));
+
+        return response;
+    }
+    //dönüşümlerin sağlıklı olup olmadığını sor
     // EmployeeResponse dönüşümü
     private EmployeeResponse toEmployeeResponse(Employee employee) {
-        return new EmployeeResponse(employee.getId(), employee.getName(), employee.getSurname());
+        return new EmployeeResponse(employee.getEmpId(),employee.getName(),employee.getSurname(), employee.getPosition(),employee.getDeparment(),employee.getStartingDate(),employee.getSalary());
     }
 
     // ProjectResponse dönüşümü
     private ProjectResponse toProjectResponse(Project project) {
-        return new ProjectResponse(project.getId(), project.getTitle(), project.getStartDate(), project.getEndDate());
+        return new ProjectResponse(project.getId(), project.getName(),project.getStartDate(), project.getEndDate(), project.getBugdet(), project.getProjectManager());
     }
 
 }

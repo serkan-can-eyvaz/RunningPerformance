@@ -2,7 +2,7 @@ package com.example.runningperformance.dto.response;
 
 import java.util.Date;
 
-public class TaskResponse {
+public class TaskWithEmployeeAndProjectRespons {
     private long id;
     private String name;
     private String description;
@@ -11,10 +11,10 @@ public class TaskResponse {
     private EmployeeResponse employeeResponse;
     private ProjectResponse projectResponse;
 
-    public TaskResponse()
+    public TaskWithEmployeeAndProjectRespons()
     {}
 
-    public TaskResponse(long id, String name, String description, Date startDate, Date endDate, EmployeeResponse employeeResponse, ProjectResponse projectResponse) {
+    public TaskWithEmployeeAndProjectRespons(long id, String name, String description, Date startDate, Date endDate, EmployeeResponse employeeResponse, ProjectResponse projectResponse) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -24,7 +24,7 @@ public class TaskResponse {
         this.projectResponse = projectResponse;
     }
 
-    public TaskResponse(String name, String description, Date startDate, Date endDate, EmployeeResponse employeeResponse, ProjectResponse projectResponse) {
+    public TaskWithEmployeeAndProjectRespons(String name, String description, Date startDate, Date endDate, EmployeeResponse employeeResponse, ProjectResponse projectResponse) {
         this.name = name;
         this.description = description;
         this.startDate = startDate;

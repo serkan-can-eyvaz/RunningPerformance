@@ -1,6 +1,7 @@
 package com.example.runningperformance.dto.mapper;
 
 import com.example.runningperformance.dto.request.ProjectRequest;
+import com.example.runningperformance.dto.response.ProjectResponse;
 import com.example.runningperformance.entity.Project;
 import org.springframework.stereotype.Component;
 
@@ -15,5 +16,14 @@ public class ProjectMapper {
         project.setStartDate(projectRequest.getStartDate());
         project.setEndDate(projectRequest.getEndDate());
         return project;
+    }
+    public static ProjectResponse toProjectResponse(Project project) {
+        ProjectResponse projectResponse = new ProjectResponse();
+        projectResponse.setProjectManager(project.getProjectManager());
+        projectResponse.setName(project.getName());
+        projectResponse.setBugdet(project.getBugdet());
+        projectResponse.setStartDate(project.getStartDate());
+        projectResponse.setEndDate(project.getEndDate());
+        return projectResponse;
     }
 }

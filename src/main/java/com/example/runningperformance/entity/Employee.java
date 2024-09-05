@@ -27,7 +27,7 @@ public class Employee {
     @Column(name = "salary")
     private long salary;
 
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Task> employeetasks = new ArrayList<>();
 
     @ManyToMany(mappedBy = "employees")

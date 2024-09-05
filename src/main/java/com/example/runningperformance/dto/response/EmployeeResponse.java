@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 public class EmployeeResponse {
+    private long id;
     private String name;
     private String surname;
     private  String position;
@@ -17,7 +18,8 @@ public class EmployeeResponse {
 
     public  EmployeeResponse() {}
 
-    public EmployeeResponse(String name, String surname, String position, String deparment, Date startingDate, long salary, List<TaskResponse> taskResponseList) {
+    public EmployeeResponse(long id,String name, String surname, String position, String deparment, Date startingDate, long salary, List<TaskResponse> taskResponseList) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.position = position;
@@ -26,6 +28,24 @@ public class EmployeeResponse {
 
         this.salary = salary;
         this.taskResponseList = taskResponseList;
+    }
+
+    public EmployeeResponse(long id, String name, String surname, String position, String deparment, Date startingDate, long salary) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.position = position;
+        this.deparment = deparment;
+        this.startingDate = startingDate;
+        this.salary = salary;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
