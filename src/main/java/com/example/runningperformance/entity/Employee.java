@@ -45,7 +45,6 @@ public class Employee {
 
         for (Task task : tasks) {
             task.setEmployee(this);
-            this.addTask(task);
         }
 
     }
