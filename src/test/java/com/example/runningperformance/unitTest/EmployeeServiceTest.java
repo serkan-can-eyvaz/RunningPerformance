@@ -72,17 +72,18 @@ public class EmployeeServiceTest {
         Employee employee = new Employee();
         employee = EmployeeMapper.toEntity(employeeRequest);
 
-        // Task repository'den dönen mock yanıtlar
         when(taskRepository.findById(1L)).thenReturn(Optional.of(task1));
         when(taskRepository.findById(2L)).thenReturn(Optional.of(task2));
 
-        // Employee repository'den dönen mock yanıt
-        when(employeeRepository.save(any(Employee.class))).thenReturn(employee);
+        when(employeeRepository.save(any(Employee.class))).thenAnswer(invocation -> {
+            Employee savedEmployee = invocation.getArgument(0);
+            return savedEmployee; // return the employee with tasks added
+        });
+        /*Burada save edilen employee task görevleri eklenmeden önce ilişkilendirilmemiş employee
+        when(employeeRepository.save(any(Employee.class))).thenReturn(employee);*/
 
-        // Metodu test et
         Employee createdEmployee = employeeService.createEmployee(employeeRequest);
 
-        // Sonuçların doğruluğunu kontrol et
         assertNotNull(createdEmployee);
         assertEquals("Serkan Can", createdEmployee.getName());
         assertEquals("Eyvaz", createdEmployee.getSurname());
@@ -93,7 +94,6 @@ public class EmployeeServiceTest {
         assertTrue(createdEmployee.getEmployeetasks().contains(task1));
         assertTrue(createdEmployee.getEmployeetasks().contains(task2));
 
-        // Mockların doğru çalıştığını doğrula
         verify(taskRepository, times(1)).findById(1L);
         verify(taskRepository, times(1)).findById(2L);
         verify(employeeRepository, times(1)).save(any(Employee.class));
